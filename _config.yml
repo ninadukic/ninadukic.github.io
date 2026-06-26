@@ -49,6 +49,18 @@ external_services:
 
 al_folio:
   api_version: 1
+  theme:
+    light:
+      bg_color: "#f0e8d0"
+      text_color: "#2a1e08"
+      theme_color: "#8a6830"
+      footer_bg_color: "#e0d4b4"
+    dark:
+      bg_color: "#1c1610"
+      text_color: "#c4aa80"
+      theme_color: "#c9a84c"
+      footer_bg_color: "#16120c"
+  style_engine: tailwind
   style_engine: tailwind
   tailwind:
     version: 4.1.18
