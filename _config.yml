@@ -61,7 +61,6 @@ al_folio:
       theme_color: "#c9a84c"
       footer_bg_color: "#16120c"
   style_engine: tailwind
-  style_engine: tailwind
   tailwind:
     version: 4.1.18
     preflight: false
