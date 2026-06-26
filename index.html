@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nina Dukic</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #f0e8d0;
+      color: #2a1e08;
+      font-family: 'Crimson Text', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    /* NAV */
+    nav {
+      background-color: #e8dfc8;
+      border-bottom: 1px solid #c4aa80;
+      padding: 14px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-name {
+      font-family: 'Cinzel', serif;
+      font-size: 14px;
+      letter-spacing: 3px;
+      color: #2a1e08;
+      font-weight: 600;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Crimson Text', serif;
+      font-size: 15px;
+      color: #6a5030;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+    .nav-links a:hover { color: #2a1e08; border-bottom: 1px solid #9a7a40; }
+
+    /* MAIN */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 32px;
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 40px;
+      align-items: start;
+      padding-bottom: 40px;
+      border-bottom: 1px solid #c4aa80;
+      margin-bottom: 40px;
+    }
+
+    /* PHOTO + VINE */
+    .photo-wrap {
+      position: relative;
+      width: 172px;
+      height: 172px;
+      flex-shrink: 0;
+    }
+    .photo-wrap img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #9a7a40;
+      position: absolute;
+      top: 6px;
+      left: 6px;
+    }
+    .photo-placeholder {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: #ddd0b0;
+      border: 2px solid #9a7a40;
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .photo-placeholder::before {
+      content: '';
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: #b09060;
+      position: absolute;
+      top: 36px;
+    }
+    .photo-placeholder::after {
+      content: '';
+      width: 100px; height: 60px;
+      border-radius: 50% 50% 0 0;
+      background: #b09060;
+      margin-bottom: 0;
+    }
+    .vine {
+      position: absolute;
+      top: 0; left: 0;
+      width: 172px; height: 172px;
+      pointer-events: none;
+    }
+
+    /* BIO */
+    .bio-name {
+      font-family: 'Cinzel', serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: #2a1e08;
+      letter-spacing: 1.5px;
+      margin-bottom: 4px;
+    }
+    .bio-title {
+      font-family: 'Crimson Text', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: #6a5030;
+      margin-bottom: 14px;
+    }
+    .ornament {
+      color: #9a7a40;
+      font-size: 14px;
+      letter-spacing: 6px;
+      margin-bottom: 14px;
+    }
+    .bio-text {
+      font-size: 17px;
+      color: #3a2e18;
+      line-height: 1.8;
+      margin-bottom: 18px;
+      max-width: 480px;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .tag {
+      font-family: 'Crimson Text', serif;
+      font-size: 12px;
+      color: #6a4e20;
+      border: 1px solid #b09060;
+      padding: 2px 12px;
+      border-radius: 2px;
+      background: #e8dfc8;
+      letter-spacing: 0.5px;
+    }
+    .bio-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .bio-links a {
+      font-family: 'Crimson Text', serif;
+      font-size: 15px;
+      color: #7a5020;
+      text-decoration: none;
+      border-bottom: 1px solid #c4aa80;
+      padding-bottom: 1px;
+    }
+    .bio-links a:hover { color: #2a1e08; border-color: #8a6830; }
+
+    /* SECTIONS */
+    .sections {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: #8a6830;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #c4aa80;
+    }
+
+    /* PUBLICATIONS */
+    .pub-item {
+      margin-bottom: 18px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid #ddd0b0;
+    }
+    .pub-item:last-child { border-bottom: none; margin-bottom: 0; }
+    .pub-title {
+      font-style: italic;
+      font-size: 15px;
+      color: #2a1e08;
+      line-height: 1.5;
+      margin-bottom: 3px;
+    }
+    .pub-meta {
+      font-size: 13px;
+      color: #8a7050;
+    }
+    .pub-year {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      color: #7a5820;
+      border: 1px solid #c4aa80;
+      padding: 1px 6px;
+      border-radius: 2px;
+      margin-left: 6px;
+      vertical-align: middle;
+      letter-spacing: 1px;
+    }
+    .pub-status {
+      font-size: 13px;
+      color: #9a6820;
+      font-style: italic;
+    }
+
+    /* NEWS */
+    .news-item {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 14px;
+      align-items: flex-start;
+    }
+    .news-date {
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      color: #9a7a40;
+      letter-spacing: 1px;
+      min-width: 56px;
+      padding-top: 3px;
+    }
+    .news-text {
+      font-size: 15px;
+      color: #3a2e18;
+      line-height: 1.6;
+    }
+    .fleuron { color: #9a7a40; }
+
+    /* FOOTER */
+    footer {
+      background-color: #e0d4b4;
+      border-top: 1px solid #c4aa80;
+      padding: 12px 48px;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 48px;
+    }
+    footer span {
+      font-family: 'Crimson Text', serif;
+      font-size: 12px;
+      color: #8a7050;
+      font-style: italic;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 700px) {
+      .hero { grid-template-columns: 1fr; }
+      .sections { grid-template-columns: 1fr; }
+      nav { padding: 12px 20px; }
+      .nav-links { gap: 16px; }
+      main { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-name">N. DUKIC</span>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#publications">publications</a></li>
+    <li><a href="#news">news</a></li>
+    <li><a href="cv.pdf">CV</a></li>
+  </ul>
+</nav>
+
+<main>
+  <section class="hero" id="about">
+    <div class="photo-wrap">
+      <!-- Replace the div below with: <img src="assets/your-photo.jpg" alt="Nina Dukic" /> -->
+      <div class="photo-placeholder"></div>
+      <svg class="vine" viewBox="0 0 172 172" xmlns="http://www.w3.org/2000/svg">
+        <!-- Stem left side -->
+        <rect x="72" y="150" width="7" height="7" fill="#4a5e22"/>
+        <rect x="65" y="143" width="7" height="7" fill="#4a5e22"/>
+        <rect x="58" y="136" width="7" height="7" fill="#5a7228"/>
+        <rect x="51" y="129" width="7" height="7" fill="#4a5e22"/>
+        <rect x="44" y="122" width="7" height="7" fill="#5a7228"/>
+        <rect x="37" y="115" width="7" height="7" fill="#4a5e22"/>
+        <rect x="30" y="106" width="7" height="7" fill="#5a7228"/>
+        <rect x="23" y="97" width="7" height="7" fill="#4a5e22"/>
+        <rect x="23" y="88" width="7" height="7" fill="#5a7228"/>
+        <rect x="23" y="79" width="7" height="7" fill="#4a5e22"/>
+        <rect x="16" y="70" width="7" height="7" fill="#5a7228"/>
+        <rect x="16" y="61" width="7" height="7" fill="#4a5e22"/>
+        <rect x="23" y="52" width="7" height="7" fill="#5a7228"/>
+        <rect x="23" y="43" width="7" height="7" fill="#4a5e22"/>
+        <rect x="30" y="36" width="7" height="7" fill="#5a7228"/>
+        <rect x="37" y="29" width="7" height="7" fill="#4a5e22"/>
+        <rect x="44" y="22" width="7" height="7" fill="#5a7228"/>
+        <rect x="51" y="15" width="7" height="7" fill="#4a5e22"/>
+        <rect x="58" y="15" width="7" height="7" fill="#5a7228"/>
+        <!-- Leaves left -->
+        <rect x="9" y="97" width="7" height="7" fill="#6a8430"/>
+        <rect x="9" y="90" width="7" height="7" fill="#7a9838"/>
+        <rect x="2" y="97" width="7" height="7" fill="#7a9838"/>
+        <rect x="9" y="104" width="7" height="7" fill="#6a8430"/>
+        <rect x="9" y="68" width="7" height="7" fill="#6a8430"/>
+        <rect x="2" y="61" width="7" height="7" fill="#7a9838"/>
+        <rect x="2" y="68" width="7" height="7" fill="#7a9838"/>
+        <rect x="9" y="61" width="7" height="7" fill="#6a8430"/>
+        <rect x="30" y="129" width="7" height="7" fill="#6a8430"/>
+        <rect x="23" y="136" width="7" height="7" fill="#7a9838"/>
+        <rect x="23" y="129" width="7" height="7" fill="#6a8430"/>
+        <rect x="30" y="136" width="7" height="7" fill="#7a9838"/>
+        <rect x="51" y="29" width="7" height="7" fill="#6a8430"/>
+        <rect x="58" y="22" width="7" height="7" fill="#7a9838"/>
+        <rect x="58" y="29" width="7" height="7" fill="#6a8430"/>
+        <rect x="16" y="43" width="7" height="7" fill="#6a8430"/>
+        <rect x="9" y="36" width="7" height="7" fill="#7a9838"/>
+        <rect x="9" y="43" width="7" height="7" fill="#6a8430"/>
+        <rect x="16" y="36" width="7" height="7" fill="#7a9838"/>
+        <!-- Gold berries -->
+        <rect x="6" y="112" width="6" height="6" fill="#c8952a" opacity="0.9"/>
+        <rect x="20" y="65" width="6" height="6" fill="#c8952a" opacity="0.9"/>
+        <rect x="48" y="9" width="6" height="6" fill="#c8952a" opacity="0.9"/>
+        <rect x="51" y="150" width="6" height="6" fill="#c8952a" opacity="0.9"/>
+        <rect x="30" y="43" width="6" height="6" fill="#9a6020" opacity="0.8"/>
+      </svg>
+    </div>
+
+    <div class="bio">
+      <div class="bio-name">Nina Dukic</div>
+      <div class="bio-title">PhD Candidate · Department of [Your Field] · [Your University]</div>
+      <div class="ornament">— ✦ —</div>
+      <p class="bio-text">
+        [Write 2-3 sentences about your research here. What do you study? What draws you to it? Where were you before?]
+      </p>
+      <div class="tags">
+        <span class="tag">[Research Area I]</span>
+        <span class="tag">[Research Area II]</span>
+        <span class="tag">[Method / Theory]</span>
+      </div>
+      <div class="bio-links">
+        <a href="mailto:your@email.com">Email</a>
+        <a href="cv.pdf">Curriculum vitae</a>
+        <a href="https://scholar.google.com" target="_blank">Google Scholar</a>
+        <a href="https://github.com/ninadukic" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="sections">
+    <section id="publications">
+      <div class="section-title">Selected writings</div>
+
+      <div class="pub-item">
+        <div class="pub-title">[Title of your paper or thesis chapter]<span class="pub-year">2025</span></div>
+        <div class="pub-meta">[Journal or Conference name] · with [Co-author if any]</div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">[Title of another paper]<span class="pub-year">2024</span></div>
+        <div class="pub-meta">[Venue]</div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">[Title of work in progress]</div>
+        <div class="pub-status">Under review</div>
+      </div>
+    </section>
+
+    <section id="news">
+      <div class="section-title">News &amp; dispatches</div>
+
+      <div class="news-item">
+        <span class="news-date">Jun 2026</span>
+        <span class="news-text"><span class="fleuron">❧ </span>[Something exciting that happened recently]</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">Mar 2026</span>
+        <span class="news-text"><span class="fleuron">❧ </span>[Another update — a talk, award, paper, etc.]</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">Jan 2026</span>
+        <span class="news-text"><span class="fleuron">❧ </span>[Something else worth noting]</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">Sep 2025</span>
+        <span class="news-text"><span class="fleuron">❧ </span>Started PhD at [University].</span>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <span>nina dukic · ninadukic.github.io</span>
+  <span>last updated june 2026</span>
+</footer>
+
+</body>
+</html>
