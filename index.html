@@ -123,7 +123,7 @@
     /* BIO */
     .bio-name {
       font-family: 'Cinzel', serif;
-      font-size: 26px;
+      font-size: 34px;
       font-weight: 600;
       color: #2a1e08;
       letter-spacing: 1.5px;
@@ -132,7 +132,7 @@
     .bio-title {
       font-family: 'Crimson Text', serif;
       font-style: italic;
-      font-size: 16px;
+      font-size: 20px;
       color: #6a5030;
       margin-bottom: 14px;
     }
@@ -254,7 +254,78 @@
       line-height: 1.6;
     }
     .fleuron { color: #9a7a40; }
-
+/* TIMELINE */
+.timeline-section {
+  margin-bottom: 48px;
+}
+.timeline-title {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: #8a6830;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #c4aa80;
+}
+.timeline {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 8px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 8px;
+  right: 8px;
+  height: 2px;
+  background: linear-gradient(to right, #6b2737, #8b3a2a, #9a6020, #b8862a, #c8a84c);
+}
+.timeline-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+}
+.timeline-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #f0e8d0;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+.timeline-item:nth-child(1) .timeline-dot { background: #6b2737; }
+.timeline-item:nth-child(2) .timeline-dot { background: #8b3a2a; }
+.timeline-item:nth-child(3) .timeline-dot { background: #9a6020; }
+.timeline-item:nth-child(4) .timeline-dot { background: #b8862a; }
+.timeline-item:nth-child(5) .timeline-dot { background: #c8a84c; }
+.timeline-year {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+.timeline-item:nth-child(1) .timeline-year { color: #6b2737; }
+.timeline-item:nth-child(2) .timeline-year { color: #8b3a2a; }
+.timeline-item:nth-child(3) .timeline-year { color: #9a6020; }
+.timeline-item:nth-child(4) .timeline-year { color: #b8862a; }
+.timeline-item:nth-child(5) .timeline-year { color: #c8a84c; }
+.timeline-text {
+  font-family: 'Crimson Text', serif;
+  font-size: 13px;
+  color: #5a4a2a;
+  text-align: center;
+  line-height: 1.5;
+  max-width: 120px;
+}
     /* FOOTER */
     footer {
       background-color: #e0d4b4;
@@ -351,26 +422,55 @@
     <div class="bio">
       <div class="bio-name">Nina Dukic</div>
       <div class="bio-title">PhD Candidate · Department of Linguistics · Georgetown University </div>
-      <div class="ornament">— ✦ —</div>
+      <div class="ornament" style="text-align:center;">— ✦ —</div>
       <p class="bio-text">
         I am a second-year PhD student at the Department of Linguistics, Georgetown University. 
         I joined the PhD program in Applied Linguistics in 2024. Born and raised in Belgrade, Serbia 🇷🇸, I completed my BA and MA studies at the University of Belgrade's Faculty of Philology. 
         With over 7 years in EFL teaching, I have a demonstrated experience across different age groups and levels. 
       </p>
       <div class="tags">
-        <span class="tag">[Psycholinguistics]</span>
-        <span class="tag">[Second Language Acquisition (SLA)]</span>
-        <span class="tag">[Research methodology]</span>
+        <span class="tag">Psycholinguistics</span>
+        <span class="tag">Second Language Acquisition (SLA)</span>
+        <span class="tag">Research methodology</span>
       </div>
       <div class="bio-links">
-        <a href="mailto:your@email.com">Email</a>
-        <a href="cv.pdf">Curriculum vitae</a>
-        <a href="https://scholar.google.com" target="_blank">Google Scholar</a>
-        <a href="https://github.com/ninadukic" target="_blank">GitHub</a>
+        <a href="https://orcid.org/0000-0001-7068-8072" target="_blank">ORCID</a>
+        <a href="https://scholar.google.com/citations?user=d_hlxM4AAAAJ&hl=en" target="_blank">Google Scholar</a>
+        <a href="https://www.linkedin.com/in/nina-dukic/" target="_blank">LinkedIn</a>
       </div>
     </div>
   </section>
-
+<section class="timeline-section">
+  <div class="timeline-title">The journey so far ✦</div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2017</div>
+      <div class="timeline-text">BA in English, University of Belgrade</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2019</div>
+      <div class="timeline-text">MA, Faculty of Philology, Belgrade</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2021</div>
+      <div class="timeline-text">Lecturer & Course Coordinator, University of Belgrade</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2024</div>
+      <div class="timeline-text">Started PhD in Applied Linguistics at Georgetown</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">Now</div>
+      <div class="timeline-text">Researching WMC & eye-tracking in L2 acquisition</div>
+    </div>
+  </div>
+</section>
+  
   <div class="sections">
     <section id="publications">
       <div class="section-title">Selected writings</div>
