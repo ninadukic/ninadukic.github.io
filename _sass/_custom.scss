@@ -4,17 +4,44 @@
 body {
   background-color: #f0e8d0 !important;
   color: #2a1e08 !important;
+  font-family: 'Crimson Text', Georgia, serif !important;
 }
 
-.navbar {
+.navbar, nav {
   background-color: #e8dfc8 !important;
   border-bottom: 1px solid #c4aa80 !important;
+}
+
+.navbar a, nav a {
+  color: #6a5030 !important;
+}
+
+.navbar a:hover, nav a:hover {
+  color: #2a1e08 !important;
 }
 
 a {
   color: #8a6830 !important;
 }
 
+a:hover {
+  color: #7a5020 !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #2a1e08 !important;
+}
+
 footer {
   background-color: #e0d4b4 !important;
+  color: #6a5030 !important;
+}
+
+.card, .post-card {
+  background-color: #e8dfc8 !important;
+  border-color: #c4aa80 !important;
+}
+
+.profile {
+  border-color: #c4aa80 !important;
 }
