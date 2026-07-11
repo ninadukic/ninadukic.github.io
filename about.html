@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About · Nina Dukic</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #f0e8d0;
+      color: #2a1e08;
+      font-family: 'Crimson Text', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    nav {
+      background-color: #e8dfc8;
+      border-bottom: 1px solid #c4aa80;
+      padding: 14px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-left { display: flex; align-items: center; gap: 12px; }
+    .nav-left img { height: 36px; }
+    .nav-divider { color: #c4aa80; font-size: 18px; }
+    .nav-name { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 2px; color: #2a1e08; font-weight: 600; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-family: 'Crimson Text', serif; font-size: 15px; color: #6a5030; text-decoration: none; letter-spacing: 0.5px; }
+    .nav-links a:hover { color: #2a1e08; border-bottom: 1px solid #9a7a40; }
+    .nav-links a.active { color: #2a1e08; border-bottom: 1px solid #8a6830; }
+
+    main { max-width: 1100px; margin: 0 auto; padding: 56px 32px; }
+
+    .page-title { font-family: 'Cinzel', serif; font-size: 28px; font-weight: 600; color: #2a1e08; letter-spacing: 2px; margin-bottom: 6px; }
+    .page-ornament { color: #9a7a40; font-size: 13px; letter-spacing: 6px; margin-bottom: 48px; }
+
+    .section-label {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: #8a6830;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #c4aa80;
+    }
+
+    /* BIO SECTION */
+    .bio-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 56px;
+    }
+    .bio-text p { font-size: 17px; color: #3a2e18; line-height: 1.9; margin-bottom: 16px; }
+    .bio-text p:last-child { margin-bottom: 0; }
+
+    /* PHOTO GALLERY */
+    .gallery {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: #ddd0b0;
+      border-radius: 4px;
+      border: 1px solid #c4aa80;
+      overflow: hidden;
+    }
+    .gallery-slides { width: 100%; height: 100%; position: relative; }
+    .gallery-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .gallery-slide.active { opacity: 1; }
+    .gallery-slide img { width: 100%; height: 100%; object-fit: cover; }
+    .gallery-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: #9a8060;
+    }
+    .gallery-placeholder span { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 2px; }
+
+    .gallery-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(240, 232, 208, 0.85);
+      border: 1px solid #c4aa80;
+      color: #6a5030;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 2;
+      transition: background 0.2s;
+    }
+    .gallery-btn:hover { background: #e8dfc8; color: #2a1e08; }
+    .gallery-btn.prev { left: 10px; }
+    .gallery-btn.next { right: 10px; }
+
+    .gallery-dots {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 2;
+    }
+    .gallery-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #c4aa80;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .gallery-dot.active { background: #8a6830; }
+
+    .gallery-caption {
+      margin-top: 8px;
+      font-family: 'Crimson Text', serif;
+      font-size: 13px;
+      font-style: italic;
+      color: #8a7050;
+      text-align: center;
+      min-height: 20px;
+    }
+
+    /* LANGUAGES */
+    .languages-section { margin-bottom: 56px; }
+    .languages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 8px; }
+    .lang-card {
+      background: #e8dfc8;
+      border: 1px solid #c4aa80;
+      padding: 18px 20px;
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+    }
+    .lang-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; }
+    .lang-card.native::before { background: #6b2737; }
+    .lang-card.advanced::before { background: #8b3a2a; }
+    .lang-card.intermediate::before { background: #9a6020; }
+    .lang-card.beginner::before { background: #c8a84c; }
+    .lang-name { font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; color: #2a1e08; letter-spacing: 1px; margin-bottom: 4px; }
+    .lang-level { font-family: 'Crimson Text', serif; font-size: 13px; font-style: italic; color: #8a7050; }
+    .lang-dots { display: flex; gap: 4px; margin-top: 8px; }
+    .lang-dot { width: 8px; height: 8px; border-radius: 50%; background: #e0d4b4; border: 1px solid #b09060; }
+    .lang-card.native .lang-dot { background: #6b2737; border-color: #6b2737; }
+    .lang-card.advanced .lang-dot.filled { background: #8b3a2a; border-color: #8b3a2a; }
+    .lang-card.intermediate .lang-dot.filled { background: #9a6020; border-color: #9a6020; }
+    .lang-card.beginner .lang-dot.filled { background: #c8a84c; border-color: #c8a84c; }
+
+    /* BEYOND SECTION */
+    .beyond-section { margin-bottom: 56px; }
+    .beyond-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 8px; }
+    .beyond-card { background: #e8dfc8; border: 1px solid #c4aa80; border-radius: 4px; padding: 24px 20px; text-align: center; }
+    .beyond-icon { font-size: 28px; margin-bottom: 10px; display: block; }
+    .beyond-title { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 2px; color: #8a6830; text-transform: uppercase; margin-bottom: 8px; }
+    .beyond-text { font-family: 'Crimson Text', serif; font-size: 14px; color: #5a4a2a; line-height: 1.6; font-style: italic; }
+
+    footer { background-color: #e0d4b4; border-top: 1px solid #c4aa80; padding: 12px 48px; display: flex; justify-content: space-between; margin-top: 48px; }
+    footer span { font-family: 'Crimson Text', serif; font-size: 12px; color: #8a7050; font-style: italic; letter-spacing: 0.5px; }
+
+    @media (max-width: 700px) {
+      .bio-section { grid-template-columns: 1fr; }
+      .languages-grid { grid-template-columns: repeat(2, 1fr); }
+      .beyond-grid { grid-template-columns: repeat(2, 1fr); }
+      nav { padding: 12px 20px; }
+      .nav-links { gap: 12px; }
+      main { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <img src="assets/img/georgetown.png" alt="Georgetown University" />
+    <span class="nav-divider">|</span>
+    <span class="nav-name">📍 Washington, DC</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">home</a></li>
+    <li><a href="about.html" class="active">about</a></li>
+    <li><a href="publications.html">publications</a></li>
+    <li><a href="news.html">news</a></li>
+    <li><a href="teaching.html">teaching</a></li>
+    <li><a href="bookshelf.html">bookshelf</a></li>
+    <li><a href="cv.pdf">CV</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="page-title">About</div>
+  <div class="page-ornament">— ✦ —</div>
+
+  <!-- BIO + GALLERY -->
+  <div class="bio-section">
+    <div class="bio-text">
+      <div class="section-label">In my own words</div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+    </div>
+
+    <div>
+      <div class="section-label">A few moments</div>
+      <div class="gallery">
+        <div class="gallery-slides">
+          <!-- SLIDE 1 — replace with your own images -->
+          <!-- To add photos: upload them to assets/img/ and replace the placeholder divs below with:
+               <img src="assets/img/your-photo.jpg" alt="Caption here" /> -->
+          <div class="gallery-slide active">
+            <div class="gallery-placeholder">
+              <span style="font-size:32px;">🖼️</span>
+              <span>Photo 1</span>
+              <span style="font-size:11px; opacity:0.7;">upload to assets/img/</span>
+            </div>
+          </div>
+          <div class="gallery-slide">
+            <div class="gallery-placeholder">
+              <span style="font-size:32px;">🖼️</span>
+              <span>Photo 2</span>
+            </div>
+          </div>
+          <div class="gallery-slide">
+            <div class="gallery-placeholder">
+              <span style="font-size:32px;">🖼️</span>
+              <span>Photo 3</span>
+            </div>
+          </div>
+        </div>
+        <button class="gallery-btn prev" onclick="changeSlide(-1)">‹</button>
+        <button class="gallery-btn next" onclick="changeSlide(1)">›</button>
+        <div class="gallery-dots">
+          <div class="gallery-dot active" onclick="goToSlide(0)"></div>
+          <div class="gallery-dot" onclick="goToSlide(1)"></div>
+          <div class="gallery-dot" onclick="goToSlide(2)"></div>
+        </div>
+      </div>
+      <div class="gallery-caption" id="gallery-caption">At [place / event / year]</div>
+    </div>
+  </div>
+
+  <!-- LANGUAGES -->
+  <div class="languages-section">
+    <div class="section-label">Languages</div>
+    <div class="languages-grid">
+      <div class="lang-card native">
+        <div class="lang-name">Serbian</div>
+        <div class="lang-level">Native</div>
+        <div class="lang-dots">
+          <div class="lang-dot filled"></div><div class="lang-dot filled"></div><div class="lang-dot filled"></div><div class="lang-dot filled"></div><div class="lang-dot filled"></div>
+        </div>
+      </div>
+      <div class="lang-card native">
+        <div class="lang-name">English</div>
+        <div class="lang-level">Native</div>
+        <div class="lang-dots">
+          <div class="lang-dot filled"></div><div class="lang-dot filled"></div><div class="lang-dot filled"></div><div class="lang-dot filled"></div><div class="lang-dot filled"></div>
+        </div>
+      </div>
+      <div class="lang-card advanced">
+        <div class="lang-name">French</div>
+        <div class="lang-level">Advanced</div>
+        <div class="lang-dots">
+          <div class="lang-dot filled"></div><div class="lang-dot filled"></div><div class="lang-dot filled"></div><div class="lang-dot filled"></div><div class="lang-dot"></div>
+        </div>
+      </div>
+      <div class="lang-card intermediate">
+        <div class="lang-name">Latin</div>
+        <div class="lang-level">Intermediate</div>
+        <div class="lang-dots">
+          <div class="lang-dot filled"></div><div class="lang-dot filled"></div><div class="lang-dot filled"></div><div class="lang-dot"></div><div class="lang-dot"></div>
+        </div>
+      </div>
+      <div class="lang-card beginner">
+        <div class="lang-name">German</div>
+        <div class="lang-level">Beginner</div>
+        <div class="lang-dots">
+          <div class="lang-dot filled"></div><div class="lang-dot"></div><div class="lang-dot"></div><div class="lang-dot"></div><div class="lang-dot"></div>
+        </div>
+      </div>
+      <div class="lang-card beginner">
+        <div class="lang-name">Korean</div>
+        <div class="lang-level">Beginner</div>
+        <div class="lang-dots">
+          <div class="lang-dot filled"></div><div class="lang-dot"></div><div class="lang-dot"></div><div class="lang-dot"></div><div class="lang-dot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BEYOND THE RESEARCH -->
+  <div class="beyond-section">
+    <div class="section-label">Beyond the research</div>
+    <div class="beyond-grid">
+      <div class="beyond-card">
+        <span class="beyond-icon">📚</span>
+        <div class="beyond-title">Fantasy Reader</div>
+        <div class="beyond-text">Happiest lost in a medieval world with magic, maps, and morally grey characters.</div>
+      </div>
+      <div class="beyond-card">
+        <span class="beyond-icon">🎵</span>
+        <div class="beyond-title">Ukulele</div>
+        <div class="beyond-text">Strumming away, mostly for an audience of one very unimpressed cat.</div>
+      </div>
+      <div class="beyond-card">
+        <span class="beyond-icon">🏰</span>
+        <div class="beyond-title">Medieval History</div>
+        <div class="beyond-text">Fascinated by the medieval world — the real one and the fictional ones.</div>
+      </div>
+      <div class="beyond-card">
+        <span class="beyond-icon">🐈</span>
+        <div class="beyond-title">Cat Person</div>
+        <div class="beyond-text">Firmly in the cats > dogs camp. No further questions.</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <span>nina dukic · ninadukic.github.io</span>
+  <span>last updated june 2026</span>
+</footer>
+
+<script>
+  const captions = [
+    "At [place / event / year]",
+    "At [place / event / year]",
+    "At [place / event / year]"
+  ];
+
+  let current = 0;
+  const slides = document.querySelectorAll('.gallery-slide');
+  const dots = document.querySelectorAll('.gallery-dot');
+  const caption = document.getElementById('gallery-caption');
+
+  function goToSlide(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    caption.textContent = captions[current];
+  }
+
+  function changeSlide(dir) { goToSlide(current + dir); }
+</script>
+
+</body>
+</html>
